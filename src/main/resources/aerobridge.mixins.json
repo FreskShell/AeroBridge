@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.freskshell.aerobridge.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MixinPortalTeleport",
+    "MixinSableBridge",
+    "MixinServerPlayer"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "aerobridge.refmap.json"
+}

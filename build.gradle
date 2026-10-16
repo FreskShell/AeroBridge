@@ -1,0 +1,83 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'net.neoforged.moddev' version '2.0.+'
+}
+
+version = '1.0.0'
+group = 'com.yourname.aerobridge'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+neoForge {
+    version = "21.1.257"
+
+    runs {
+        client {
+            client()
+        }
+        server {
+            server()
+        }
+    }
+
+    mods {
+        aerobridge {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+// Configuração de Mixins
+sourceSets {
+    main {
+        ext.refMap = file("build/tmp/compileJava/refmap.json")
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url = "https://maven.neoforged.net/releases" }
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    // Dependências locais - nomes exatos dos JARs sem extensão
+    compileOnly(name: 'aeroportals-1.21.1-1.3.4')
+    compileOnly(name: 'create-1.21.1-6.0.10')
+    compileOnly(name: 'create_aeronautics_transmission_linkage-0.2.8')
+    compileOnly(name: 'sable-neoforge-1.21.1-2.0.6')
+    compileOnly(name: 'sable-companion-common-1.6.0')
+    compileOnly(name: 'simurail-0.1.0+mc1.21.1')
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version   : "1.21.1",
+            minecraft_version_range: "[1.21.1,)",
+            neoform_version     : "20240808.144430",
+            neoform_version_range: "[20240808.144430,)",
+            loader_version_range: "[4,)",
+            mod_id              : "aerobridge",
+            mod_name            : "AeroBridge",
+            mod_license         : "MIT",
+            mod_version         : "1.0.0",
+            mod_authors         : "freskshell",
+            mod_description     : "Portal traversal system for Sable sublevels with Create, Simurail and Aeronautics compatibility.",
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/neoforge.mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}

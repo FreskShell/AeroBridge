@@ -1,0 +1,13 @@
+{
+  "itemGroup.comfreskshellmod": "Example Mod Tab",
+  "block.comfreskshellmod.example_block": "Example Block",
+  "item.comfreskshellmod.example_item": "Example Item",
+
+  "comfreskshellmod.configuration.title": "com.freskshell.mod Configs",
+  "comfreskshellmod.configuration.section.comfreskshellmod.common.toml": "com.freskshell.mod Configs",
+  "comfreskshellmod.configuration.section.comfreskshellmod.common.toml.title": "com.freskshell.mod Configs",
+  "comfreskshellmod.configuration.items": "Item List",
+  "comfreskshellmod.configuration.logDirtBlock": "Log Dirt Block",
+  "comfreskshellmod.configuration.magicNumberIntroduction": "Magic Number Text",
+  "comfreskshellmod.configuration.magicNumber": "Magic Number"
+}
